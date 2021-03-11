@@ -22,11 +22,11 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <notificationGroup id="Custom Notification Group" displayType="BALLOON"/>
   </extensions>
 
   <actions>
-    <action id="me.alpaca.zzpj.Action" class="pl.lodz.p.zzpj.gitignore.Action"
+    <action id="me.alpaca.zzpj.Action" class="pl.lodz.p.zzpj.gitignore.GenerateGitIgnoreAction"
             text="Generate .gitignore" description="Generate .gitignore file" icon="AllIcons.Vcs.Ignore_file">
       <add-to-group group-id="ToolbarRunGroup" anchor="first" />
     </action>
