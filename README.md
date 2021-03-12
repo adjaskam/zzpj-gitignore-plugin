@@ -1,10 +1,10 @@
-#Gitignore plugin
+# Gitignore plugin
 
 - Creating .gitignore file- success case
 
-   ![Success case gif](static_files/29d3028749e7.gif)
+   ![Success case gif](https://i.imgur.com/Q4glJge.gif)
 
 
 - Creating .gitignore file- fail case
 
-   ![Fail case gif](static_files/a18189c5dad7.gif)
+   ![Fail case gif](https://i.imgur.com/yDyMY8Z.gif)
