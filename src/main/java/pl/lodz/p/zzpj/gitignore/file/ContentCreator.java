@@ -1,6 +1,5 @@
 package pl.lodz.p.zzpj.gitignore.file;
 
-import com.intellij.ide.actions.SynchronizeAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import org.jetbrains.annotations.Nullable;
@@ -11,7 +10,7 @@ import pl.lodz.p.zzpj.gitignore.webapi.model.TechnologyObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ContentCreator {

@@ -1,0 +1,24 @@
+<idea-plugin>
+    <id>pl.lodz.p.zzpj.gitignore</id>
+    <name>Generator Gitignore</name>
+    <vendor email="example@example.com" url="https://www.example.com">Flamingos</vendor>
+
+    <description><![CDATA[
+      Intellij plugin for generating gitignore files
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Custom Notification Group" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action id="me.alpaca.zzpj.Action" class="pl.lodz.p.zzpj.gitignore.GenerateGitIgnoreAction"
+                text="Generate .gitignore" description="Generate .gitignore file" icon="AllIcons.Vcs.Ignore_file">
+            <add-to-group group-id="ToolbarRunGroup" anchor="first" />
+        </action>
+    </actions>
+</idea-plugin>

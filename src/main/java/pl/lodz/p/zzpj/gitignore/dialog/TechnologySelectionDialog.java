@@ -1,6 +1,5 @@
 package pl.lodz.p.zzpj.gitignore.dialog;
 
-import com.esotericsoftware.minlog.Log;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.ui.components.JBList;
 import org.jetbrains.annotations.Nullable;
