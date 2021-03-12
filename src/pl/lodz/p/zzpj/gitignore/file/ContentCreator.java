@@ -1,7 +1,8 @@
 package pl.lodz.p.zzpj.gitignore.file;
 
-import com.esotericsoftware.minlog.Log;
+import com.intellij.ide.actions.SynchronizeAction;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.VirtualFileManager;
 import org.jetbrains.annotations.Nullable;
 import pl.lodz.p.zzpj.gitignore.webapi.GetDataInterface;
 import pl.lodz.p.zzpj.gitignore.webapi.exception.FileCreationException;
@@ -15,9 +16,9 @@ import java.util.stream.Collectors;
 
 public class ContentCreator {
 
-    private GetDataInterface getData;
+    private final GetDataInterface getData;
 
-    private Project project;
+    private final Project project;
 
     private List<String> list;
 
@@ -46,19 +47,26 @@ public class ContentCreator {
     }
 
     public void createGitIgnoreFile() throws FileCreationException {
-        String filePath;
-        try {
-            filePath = project.getBasePath().concat("/.gitignore");
-        } catch(NullPointerException e) {
-            throw new FileCreationException(e);
+        if(list.isEmpty()) {
+            throw new FileCreationException("No technology has been selected");
         }
+        try {
+            assert project != null;
+            assert project.getBasePath() != null;
+            assert project.getProjectFile() != null;
+        } catch(AssertionError e) {
+            throw new FileCreationException("Undefined project dir");
+        }
+
+        String filePath = project.getBasePath().concat("/.gitignore");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
             writer.write(search());
         } catch (IOException e) {
             throw new FileCreationException(e);
         }
-        project.getBaseDir().refresh(false, true);
+
+        VirtualFileManager.getInstance().syncRefresh();
     }
     
 }

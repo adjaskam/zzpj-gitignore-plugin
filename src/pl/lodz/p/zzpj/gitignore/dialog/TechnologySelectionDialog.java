@@ -1,35 +1,30 @@
 package pl.lodz.p.zzpj.gitignore.dialog;
 
 import com.esotericsoftware.minlog.Log;
-import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.ui.components.JBList;
 import org.jetbrains.annotations.Nullable;
-import pl.lodz.p.zzpj.gitignore.file.ContentCreator;
-import pl.lodz.p.zzpj.gitignore.webapi.GetData;
 import pl.lodz.p.zzpj.gitignore.webapi.GetDataInterface;
-import pl.lodz.p.zzpj.gitignore.webapi.exception.WebApiException;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ConnectionProblemDialog extends DialogWrapper {
+public class TechnologySelectionDialog extends DialogWrapper implements Dialog {
 
-    DefaultListModel<String> optionsModel;
-    DefaultListModel<String> selectionsModel;
+    private DefaultListModel<String> optionsModel;
+    private DefaultListModel<String> selectionsModel;
 
-    GetDataInterface getDataInterface;
+    private GetDataInterface getDataInterface;
+
+    private List<String> selectedTechnologies;
+
 
     @SuppressWarnings("DialogTitleCapitalization")
-    public ConnectionProblemDialog(GetDataInterface getDataInterface) {
+    public TechnologySelectionDialog(GetDataInterface getDataInterface) {
         super(true);
         this.getDataInterface = getDataInterface;
         setTitle("Select technologies");
@@ -75,13 +70,9 @@ public class ConnectionProblemDialog extends DialogWrapper {
 
     @Override
     protected void doOKAction() {
-//        ContentCreator contentCreator = new ContentCreator(event.getProject(), getDataInterface);
-//        contentCreator.setList(Arrays.asList("java", "symfony", "arcanist"));
-
-//        contentCreator.createGitIgnoreFile();
-
-        Log.info(getSelectedList().toString());
-
+        selectedTechnologies = IntStream.range(0, selectionsModel.size())
+                .mapToObj(selectionsModel::get)
+                .collect(Collectors.toList());
         super.doOKAction();
     }
 
@@ -95,7 +86,7 @@ public class ConnectionProblemDialog extends DialogWrapper {
         });
     }
 
-    public List<String> getSelectedList() {
-        return IntStream.range(0, selectionsModel.size()).mapToObj(selectionsModel::get).collect(Collectors.toList());
+    public List<String> getOkList() {
+        return selectedTechnologies;
     }
 }

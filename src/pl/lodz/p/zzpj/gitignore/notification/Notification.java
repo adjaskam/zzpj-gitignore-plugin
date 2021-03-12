@@ -10,14 +10,14 @@ public class Notification {
     public static void showError(@Nullable Project project, String content) {
         NotificationGroupManager.getInstance().getNotificationGroup("Custom Notification Group")
                 .createNotification(content, NotificationType.ERROR)
-                .setTitle(".gitignore plugin: ")
+                .setTitle("Generator gitignore")
                 .notify(project);
     }
 
     public static void showInfo(@Nullable Project project, String content) {
         NotificationGroupManager.getInstance().getNotificationGroup("Custom Notification Group")
                 .createNotification(content, NotificationType.INFORMATION)
-                .setTitle(".gitignore plugin: ")
+                .setTitle("Generator gitignore")
                 .notify(project);
     }
 
